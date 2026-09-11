@@ -6,3 +6,4 @@ def connectURI(server, port):
 
 print(connectURI("kpc.com", 8080))
 
+print("aaa")
