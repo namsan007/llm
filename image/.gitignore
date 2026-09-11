@@ -1,0 +1,6 @@
+# API 키와 환경 설정 보호
+.env
+
+# Python 생성 파일
+__pycache__/
+*.py[cod]
