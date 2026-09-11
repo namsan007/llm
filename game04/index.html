@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOTTO / 번호 통계 연구소</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">LOTTO 6/45 / DATA LAB</p>
+        <h1>번호는 기억하고,<br><em>선택은 가볍게.</em></h1>
+        <p class="lede">동행복권 공개 데이터를 바탕으로 번호 출현 빈도와 조합 확률을 살펴봅니다.</p>
+      </div>
+      <div class="draw-mark" aria-label="로또 6/45"><span>6</span><small>/45</small></div>
+    </header>
+
+    <section class="control-bar" aria-label="분석 조건">
+      <label>최근 분석 범위
+        <select id="window-size">
+          <option value="10">최근 10회</option>
+          <option value="20" selected>최근 20회</option>
+          <option value="30">최근 30회</option>
+          <option value="50">최근 50회</option>
+          <option value="all">전체 누적</option>
+        </select>
+      </label>
+      <button id="refresh-button" type="button">데이터 다시 읽기</button>
+      <p id="load-status" aria-live="polite">최신 회차를 확인하는 중...</p>
+    </section>
+
+    <details class="purchase-input panel" aria-label="이번 주 구매 번호 반영">
+      <summary><span><b>이번 주 구매 번호 반영</b><small>카페 이미지 OCR 또는 직접 입력</small></span><span id="purchase-status" class="muted-label">아직 반영된 번호 없음</span></summary>
+      <div class="purchase-heading"><p class="section-label">MY LOTTO NOTES</p><h2>구매 번호를 분석에 반영</h2></div>
+      <p class="input-help">네이버 카페에서 저장한 구매 이미지나 번호표를 올리면 숫자를 읽습니다. 인식 결과를 직접 고친 뒤 적용하세요.</p>
+      <div class="purchase-tools">
+        <label class="upload-button" for="purchase-image">이미지에서 읽기</label>
+        <input id="purchase-image" type="file" accept="image/*">
+        <textarea id="purchase-numbers" rows="2" placeholder="직접 입력 예: 3, 8, 14, 22, 31, 45"></textarea>
+        <button id="apply-purchase" type="button">번호 반영</button>
+        <button id="clear-purchase" class="quiet-button" type="button">지우기</button>
+      </div>
+      <p id="ocr-status" class="ocr-status" aria-live="polite">이미지 또는 직접 입력한 번호가 추천 조합에 참고로 반영됩니다.</p>
+    </details>
+
+    <section class="dashboard">
+      <article class="panel hero-panel">
+        <div class="panel-heading"><div><p class="section-label">THIS WEEK'S PICKS</p><h2>이번 주 추천 번호 5개</h2></div><span class="live-chip">통계 가중치</span></div>
+        <div id="recommendations" class="recommendations"><div class="loading-line">데이터를 불러오면 추천 조합이 나타납니다.</div></div>
+        <p class="note">최근 출현률, 전체 출현률, 홀짝과 구간 분산을 섞은 참고용 추천입니다. 당첨을 예측하거나 보장하지 않습니다.</p>
+      </article>
+
+      <article class="panel probability-panel">
+        <div class="panel-heading"><div><p class="section-label">ODDS / COMBINATORICS</p><h2>1등과 2등 확률</h2></div></div>
+        <div class="odds-grid">
+          <div class="odds-card"><span>1등 · 6개 일치</span><strong>1 / 8,145,060</strong><small>약 0.0000123%</small></div>
+          <div class="odds-card accent"><span>2등 · 5개 + 보너스</span><strong>1 / 1,357,510</strong><small>약 0.0000737%</small></div>
+        </div>
+        <p class="formula">한 게임 기준 · 45개 중 6개 조합의 이론적 확률</p>
+      </article>
+
+      <article class="panel stats-panel">
+        <div class="panel-heading"><div><p class="section-label">RECENT FREQUENCY MAP</p><h2>최근 회차 번호 통계</h2></div><span id="draw-count" class="muted-label">-회 분석</span></div>
+        <div id="number-chart" class="number-chart"></div>
+        <div class="legend"><span><i class="hot"></i>많이 나온 번호</span><span><i class="cool"></i>적게 나온 번호</span><span><i class="bonus"></i>보너스 포함</span></div>
+      </article>
+
+      <article class="panel insight-panel">
+        <div class="panel-heading"><div><p class="section-label">READOUT</p><h2>이번 분석 요약</h2></div></div>
+        <dl id="insights"><div><dt>데이터</dt><dd>대기 중</dd></div><div><dt>최다 출현</dt><dd>-</dd></div><div><dt>보너스 최다</dt><dd>-</dd></div><div><dt>분석 범위</dt><dd>-</dd></div></dl>
+      </article>
+
+      <article class="panel methods-panel">
+        <div class="panel-heading"><div><p class="section-label">METHODS / REFERENCES</p><h2>분석 방법 참조</h2></div><span class="muted-label">재현 가능한 지표</span></div>
+        <div class="method-grid">
+          <div class="method-card"><b>핫 · 콜드</b><p>최근 20회의 출현 수에 가장 큰 가중치를 주고, 전체 빈도도 작게 섞습니다.</p><span>최근 55% + 누적 25%</span></div>
+          <div class="method-card"><b>미출현 간격</b><p>마지막 출현 이후 공백을 계산하되, 오래 안 나왔다고 당첨 가능성이 커진다고 단정하지 않습니다.</p><span>간격 점수 8% · 참고용</span></div>
+          <div class="method-card"><b>이월수</b><p>직전 회차 번호 중 0~2개가 다시 들어가는 조합을 허용하고, 3개 이상은 제한합니다.</p><span>직전 번호 재사용 가중치</span></div>
+          <div class="method-card"><b>홀짝 · 고저</b><p>홀짝 2:4~4:2, 저번호 1~22와 고번호 23~45의 균형을 조합 단계에서 검사합니다.</p><span>한쪽 5개 이상 제한</span></div>
+          <div class="method-card"><b>합계 · 연속수</b><p>6개 합계 110~170, 연속번호 0~1쌍을 우선하고 AC 7~10 범위를 재시도합니다.</p><span>구조 필터</span></div>
+          <div class="method-card"><b>구간 · 끝수 · 동반수</b><p>9개 단위 구간은 최대 2개, 같은 끝수는 과밀을 피하고 과거 동반쌍은 약한 가중치만 줍니다.</p><span>다양성 유지</span></div>
+        </div>
+        <div class="reference-links"><span>검색 참고</span><a href="https://search.naver.com/search.naver?query=%EB%A1%9C%EB%98%90+%EB%B2%88%ED%98%B8+%EB%B6%84%EC%84%9D%EB%B2%95" target="_blank" rel="noreferrer">네이버 분석법 검색</a><a href="https://cafe.naver.com/lottomaster645" target="_blank" rel="noreferrer">공개 카페 · 동반수</a><a href="https://cafe.naver.com/no1lotto" target="_blank" rel="noreferrer">공개 카페 · 최근회차</a><a href="https://lottotapa.com/stat/stat_divison_9.php" target="_blank" rel="noreferrer">9분할 통계 예시</a></div>
+        <p class="method-warning">이번 추천은 네이버 검색과 공개 카페 글에서 반복된 통계 용어를 재현 가능한 규칙으로 바꾼 것입니다. 카페·블로그의 ‘필승’, ‘100% 예측’, 추첨기 특성 단정은 검증된 확률 법칙이 아닙니다. 모든 조합의 다음 회차 당첨 확률은 동일하며, 이 도구는 선택 과정을 정리하는 참고용입니다.</p>
+      </article>
+    </section>
+    <footer>데이터 출처: 동행복권 회차별 공개 API · 통계는 과거 결과의 요약이며 미래 결과의 확률을 바꾸지 않습니다.</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

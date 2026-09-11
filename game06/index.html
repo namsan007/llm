@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구로 마을버스 실시간 위치</title>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="intro">
+      <p class="eyebrow">GURO / LIVE BUS MAP</p>
+      <h1>구로 마을버스<br><em>지금 어디쯤?</em></h1>
+      <p class="lede">10번과 11번 버스의 현재 위치를 한 화면에서 확인합니다.</p>
+    </section>
+
+    <section class="toolbar" aria-label="지도 설정">
+      <div class="route-tabs" role="group" aria-label="노선 선택">
+        <button class="route-button active" data-route="all" type="button">전체</button>
+        <button class="route-button route-10" data-route="10" type="button">10번</button>
+        <button class="route-button route-11" data-route="11" type="button">11번</button>
+      </div>
+      <label class="refresh-control">자동 갱신
+        <select id="refresh-interval">
+          <option value="0">끔</option>
+          <option value="30" selected>30초</option>
+          <option value="60">1분</option>
+        </select>
+      </label>
+      <button id="refresh-button" class="refresh-button" type="button" title="버스 위치 새로고침">↻ 새로고침</button>
+      <p id="status" class="status" aria-live="polite">위치를 확인하는 중...</p>
+    </section>
+
+    <section class="map-layout">
+      <div id="map" aria-label="구로 마을버스 위치 지도"></div>
+      <aside class="bus-list" aria-label="버스 목록">
+        <div class="aside-heading"><div><p class="section-label">BUSES ON THE ROAD</p><h2>운행 중인 버스</h2></div><span id="bus-count" class="count">-대</span></div>
+        <div id="bus-cards" class="bus-cards"></div>
+        <div class="legend"><span><i class="dot route-10-dot"></i>10번</span><span><i class="dot route-11-dot"></i>11번</span></div>
+        <p class="data-note">위치는 버스 운행 정보 제공 API 기준이며, 통신 상태에 따라 실제 위치와 약간 다를 수 있습니다.</p>
+      </aside>
+    </section>
+    <footer><span id="updated-at">마지막 갱신: -</span><span>지도 © OpenStreetMap contributors</span></footer>
+  </main>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10151d">
+  <title>MOONFALL SURVIVORS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="cabinet" aria-label="Moonfall Survivors 게임">
+      <header class="header">
+        <div><p class="eyebrow">NIGHTFALL PROTOCOL // 03</p><h1>MOONFALL <span>SURVIVORS</span></h1></div>
+        <div class="live"><i></i>LIVE RUN <b id="run-state">READY</b></div>
+      </header>
+      <div class="game-grid">
+        <section class="arena-frame">
+          <canvas id="game-canvas" width="960" height="600" aria-label="생존 게임 플레이 화면"></canvas>
+          <div id="start-overlay" class="overlay">
+            <p class="overline">THE NIGHT HAS TEETH</p><h2>MOONFALL<br><em>SURVIVORS</em></h2>
+            <p>어둠이 삼키기 전에 성장하고, 몰려오는 밤의 군단을 버텨내세요.</p>
+            <button id="start-button" class="primary" type="button">밤을 시작한다 <span>→</span></button>
+            <small>WASD / 방향키 이동 · 공격은 자동으로 발동합니다</small>
+          </div>
+          <div id="level-overlay" class="level-overlay hidden">
+            <p class="overline">LEVEL UP // CHOOSE YOUR FATE</p><h2>성장 선택</h2>
+            <div id="choice-list" class="choice-list"></div>
+          </div>
+        </section>
+        <aside class="hud">
+          <div class="time-card"><span>NIGHT SURVIVED</span><strong id="time">00:00</strong><div class="night-progress"><i id="night-progress"></i></div></div>
+          <div class="stat-row"><div><span>LEVEL</span><b id="level">01</b></div><div><span>BEST</span><b id="best">00:00</b></div></div>
+          <div class="bar-group"><div><span>VITALITY</span><b id="health-text">100 / 100</b></div><div class="bar health"><i id="health-bar"></i></div></div>
+          <div class="bar-group"><div><span>EXPERIENCE</span><b id="xp-text">0 / 20</b></div><div class="bar xp"><i id="xp-bar"></i></div></div>
+          <div class="relics"><span>RELICS & ARSENAL</span><div id="relic-list" class="relic-list"><i class="empty">아직 획득한 유물이 없습니다</i></div></div>
+          <div class="log"><span>NIGHT LOG</span><p id="log">달이 떠오릅니다.</p></div>
+          <button id="pause-button" class="pause" type="button" disabled>Ⅱ 일시정지</button>
+          <button id="restart-button" class="restart" type="button">↻ 새 밤</button>
+        </aside>
+      </div>
+      <footer><span><kbd>W A S D</kbd> MOVE</span><span><kbd>ESC</kbd> PAUSE</span><span><kbd>AUTO</kbd> ATTACK</span><strong>WAVE <b id="wave">01</b></strong></footer>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

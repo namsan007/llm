@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#07131f">
+  <title>SKY RAIDERS // 1945</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="arcade-shell">
+    <section class="cabinet" aria-label="Sky Raiders 수직 슈팅 게임">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">ARCADE / 02</p>
+          <h1>SKY <span>RAIDERS</span></h1>
+        </div>
+        <div class="mission-chip"><i></i><span>MISSION<br><b id="mission-status">READY</b></span></div>
+      </header>
+
+      <div class="game-layout">
+        <section class="screen-frame">
+          <canvas id="game-canvas" width="420" height="700" aria-label="플레이 화면"></canvas>
+          <div id="overlay" class="overlay">
+            <p class="overlay-kicker">PACIFIC FRONT // 1945</p>
+            <h2 id="overlay-title">SKY RAIDERS</h2>
+            <p id="overlay-copy">적 편대를 뚫고 태평양의 하늘을 지켜라.</p>
+            <button id="start-button" class="start-button" type="button">출격하기 <span>→</span></button>
+            <p class="overlay-tip">방향키 / WASD 이동 · SPACE 연사 · P 일시정지</p>
+          </div>
+        </section>
+
+        <aside class="dashboard">
+          <div class="score-block"><span>SCORE</span><strong id="score">0000000</strong></div>
+          <div class="dashboard-grid">
+            <div class="metric"><span>HIGH SCORE</span><b id="high-score">0000000</b></div>
+            <div class="metric"><span>STAGE</span><b id="stage">01</b></div>
+          </div>
+          <div class="meter-block"><div><span>ARMOR</span><b id="armor-text">100%</b></div><div class="meter"><i id="armor-bar"></i></div></div>
+          <div class="weapon-block"><span>WEAPON SYSTEM</span><strong id="weapon">VULCAN // LV.1</strong><div class="weapon-lights"><i></i><i></i><i></i><i></i></div></div>
+          <div class="mission-log"><span>MISSION LOG</span><p id="log">적 편대가 접근 중입니다.</p></div>
+          <button id="pause-button" class="pause-button" type="button" disabled>Ⅱ 일시정지</button>
+          <button id="restart-button" class="restart-button" type="button">↻ 다시 시작</button>
+        </aside>
+      </div>
+
+      <div class="mobile-controls" aria-label="모바일 조작">
+        <button data-key="left" type="button" aria-label="왼쪽">←</button>
+        <button data-key="up" type="button" aria-label="위">↑</button>
+        <button data-key="fire" class="fire-control" type="button" aria-label="발사">✦</button>
+        <button data-key="down" type="button" aria-label="아래">↓</button>
+        <button data-key="right" type="button" aria-label="오른쪽">→</button>
+      </div>
+      <footer class="legend"><span><kbd>← ↑ ↓ →</kbd> MOVE</span><span><kbd>SPACE</kbd> FIRE</span><span><kbd>P</kbd> PAUSE</span><span class="credit">INSERT COIN // 1P</span></footer>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>웹 기초 실험실 | HTML CSS JavaScript</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#top"><span class="brand-mark">&lt;/&gt;</span><span>웹 기초 실험실</span></a>
+      <nav class="top-nav" aria-label="주요 메뉴"><a class="active" href="#learn">학습하기</a><a href="#playground">실험실</a><a href="#quiz">퀴즈</a></nav>
+      <div class="progress-pill"><span>오늘의 진행도</span><strong id="progress-value">25%</strong><i><b id="progress-bar"></b></i></div>
+    </header>
+
+    <main id="top">
+      <section class="hero" id="learn">
+        <div class="hero-copy">
+          <p class="kicker">LESSON 01 / WEB FOUNDATIONS</p>
+          <h1>웹페이지는<br><em>세 가지 언어</em>로<br>살아 움직여요.</h1>
+          <p class="hero-text">HTML로 뼈대를 세우고, CSS로 표정을 만들고, JavaScript로 반응을 더해보세요.</p>
+          <a class="hero-button" href="#playground">직접 바꿔보기 <span>↓</span></a>
+        </div>
+        <div class="hero-visual" aria-label="HTML, CSS, JavaScript가 웹페이지를 만드는 과정을 보여주는 그림">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="code-window"><div class="window-top"><span></span><span></span><span></span><small>my-first-page.html</small></div><div class="code-lines"><b><i>01</i> &lt;main&gt;</b><b><i>02</i> &nbsp;&lt;h1&gt;안녕하세요!&lt;/h1&gt;</b><b><i>03</i> &nbsp;&lt;button&gt;눌러보기&lt;/button&gt;</b><b><i>04</i> &lt;/main&gt;</b></div></div>
+          <div class="floating-tag html-tag">HTML <small>구조</small></div><div class="floating-tag css-tag">CSS <small>스타일</small></div><div class="floating-tag js-tag">JS <small>동작</small></div>
+        </div>
+      </section>
+
+      <section class="concepts" aria-labelledby="concept-title">
+        <div class="section-heading"><p class="kicker">THE THREE LAYERS</p><h2 id="concept-title">각자의 역할이 달라요</h2><p>하나씩 익히면 복잡해 보이는 웹도 훨씬 선명하게 보입니다.</p></div>
+        <div class="concept-grid">
+          <article class="concept-card html-card"><div class="card-icon">&lt;/&gt;</div><div><p class="card-label">01 / STRUCTURE</p><h3>HTML</h3><p>콘텐츠의 의미와 뼈대를 정해요. 제목, 문단, 버튼처럼 페이지의 재료를 배치합니다.</p><code>&lt;h1&gt;제목&lt;/h1&gt;</code></div></article>
+          <article class="concept-card css-card"><div class="card-icon">✦</div><div><p class="card-label">02 / STYLE</p><h3>CSS</h3><p>색, 여백, 크기, 배치로 페이지의 분위기와 읽기 좋은 화면을 만들어요.</p><code>color: #f7c948;</code></div></article>
+          <article class="concept-card js-card"><div class="card-icon">JS</div><div><p class="card-label">03 / BEHAVIOR</p><h3>JavaScript</h3><p>클릭이나 입력에 반응하고, 화면의 내용을 바꾸는 동작을 더합니다.</p><code>button.onclick = ...</code></div></article>
+        </div>
+      </section>
+
+      <section class="playground-section" id="playground" aria-labelledby="playground-title">
+        <div class="section-heading compact"><p class="kicker">TRY IT YOURSELF</p><h2 id="playground-title">작은 실험을 시작해요</h2><p>코드를 바꾸고 <strong>실행</strong>을 눌러 결과를 확인해보세요.</p></div>
+        <div class="playground">
+          <div class="editor-panel"><div class="editor-tabs"><button class="editor-tab active" data-tab="html">HTML</button><button class="editor-tab" data-tab="css">CSS</button><button class="editor-tab" data-tab="js">JavaScript</button></div><div class="editor-body"><label for="code-editor" id="editor-label">HTML을 편집해보세요</label><textarea id="code-editor" spellcheck="false" aria-label="코드 편집기"></textarea></div><div class="editor-footer"><span id="editor-hint">h1의 글자를 바꿔보세요.</span><button id="run-code" type="button">▶ 실행하기</button></div></div>
+          <div class="preview-panel"><div class="preview-top"><span>LIVE PREVIEW</span><span class="live-dot">● LIVE</span></div><div id="preview" class="preview-content"></div><div class="preview-tip">코드를 바꾸면 이곳에 결과가 나타납니다.</div></div>
+        </div>
+      </section>
+
+      <section class="quiz-section" id="quiz" aria-labelledby="quiz-title"><div class="quiz-copy"><p class="kicker">QUICK CHECK</p><h2 id="quiz-title">마지막으로 확인해볼까요?</h2><p>버튼을 눌렀을 때 글자가 바뀌게 하려면 어떤 언어가 필요할까요?</p></div><div class="quiz-box"><div class="quiz-question"><span>Q</span><strong>페이지에 ‘클릭하면 인사하기’ 동작을 넣는 것은?</strong></div><div class="quiz-options"><button data-answer="html">HTML</button><button data-answer="css">CSS</button><button data-answer="js">JavaScript</button></div><p id="quiz-feedback" aria-live="polite">정답을 골라보세요.</p></div></section>
+    </main>
+    <footer><span>WEB FOUNDATION LAB</span><span>작은 코드가 화면을 바꿉니다.</span></footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

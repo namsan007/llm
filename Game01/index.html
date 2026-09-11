@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Tetris</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <section class="game-card" aria-label="테트리스 게임">
+      <header class="game-header">
+        <div>
+          <p class="eyebrow">ARCADE / 01</p>
+          <h1>NEON<span>TETRIS</span></h1>
+        </div>
+        <div class="status-dot" aria-label="게임 상태"></div>
+      </header>
+
+      <div class="game-layout">
+        <section class="board-wrap">
+          <div id="game-board" class="game-board" role="grid" aria-label="테트리스 게임판"></div>
+          <div id="overlay" class="overlay">
+            <p class="overlay-kicker">READY?</p>
+            <h2 id="overlay-title">테트리스를 시작하세요</h2>
+            <button id="start-button" class="primary-button" type="button">게임 시작</button>
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <div class="stat-panel">
+            <span>점수</span>
+            <strong id="score">000000</strong>
+          </div>
+          <div class="stat-panel">
+            <span>최고 점수</span>
+            <strong id="high-score">000000</strong>
+          </div>
+          <div class="stat-row">
+            <div class="stat-panel compact"><span>레벨</span><strong id="level">01</strong></div>
+            <div class="stat-panel compact"><span>라인</span><strong id="lines">000</strong></div>
+          </div>
+          <div class="next-panel">
+            <span>다음 블록</span>
+            <div id="next-piece" class="next-piece" aria-label="다음 블록 미리보기"></div>
+          </div>
+          <div id="item-status" class="item-status" aria-live="polite">아이템 없음</div>
+          <button id="pause-button" class="secondary-button" type="button" disabled>일시정지</button>
+          <button id="restart-button" class="text-button" type="button">처음부터</button>
+        </aside>
+      </div>
+
+      <footer class="controls">
+        <div class="key-hint"><kbd>←</kbd><kbd>→</kbd><span>이동</span></div>
+        <div class="key-hint"><kbd>↑</kbd><span>회전</span></div>
+        <div class="key-hint"><kbd>↓</kbd><span>내리기</span></div>
+        <div class="key-hint"><kbd>SPACE</kbd><span>즉시 낙하</span></div>
+        <div class="key-hint"><kbd>P</kbd><span>일시정지</span></div>
+      </footer>
+      <div class="mobile-controls" aria-label="모바일 조작 버튼">
+        <button data-action="left" type="button" aria-label="왼쪽 이동">←</button>
+        <button data-action="rotate" type="button" aria-label="회전">↻</button>
+        <button data-action="down" type="button" aria-label="아래로 이동">↓</button>
+        <button data-action="right" type="button" aria-label="오른쪽 이동">→</button>
+        <button data-action="drop" type="button" aria-label="즉시 낙하">⇣</button>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
